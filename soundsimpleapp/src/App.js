@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 // Import styles
 import "./styles/app.scss";
-// Import Util
-import data from "./utils";
+// Import Data
+import data from "./data";
 // Import components
 import Player from "./components/Player";
 import Song from "./components/Song";
