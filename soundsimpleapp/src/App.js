@@ -47,7 +47,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className={`App ${libStatus ? "library-active" : ""}`}>
       <Nav libStatus={libStatus} setLibStatus={setLibStatus} />
       <Song currentSong={currentSong} />
       <Player
