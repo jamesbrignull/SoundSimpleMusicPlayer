@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
   faAngleLeft,
   faAngleRight,
   faPause,
+  faVolumeDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Player = ({
@@ -18,7 +19,8 @@ const Player = ({
   setCurrentSong,
   setSongs,
 }) => {
-  //useEfffect
+  //State
+  const [activeVolume, setActiveVolume] = useState(false);
 
   // Adding the styles
   const trackAnim = {
@@ -85,6 +87,12 @@ const Player = ({
     if (isPlaying) audioRef.current.play();
   };
 
+  const changeVolume = (e) => {
+    let value = e.target.value;
+    audioRef.current.volume = value;
+    setSongInfo({ ...songInfo, volume: value });
+  };
+
   return (
     <div className="player">
       <div className="time-control">
@@ -125,6 +133,20 @@ const Player = ({
           size="2x"
           icon={faAngleRight}
         />
+        <FontAwesomeIcon
+          onClick={() => setActiveVolume(!activeVolume)}
+          icon={faVolumeDown}
+        />
+        {activeVolume && (
+          <input
+            onChange={changeVolume}
+            value={songInfo.volume}
+            max="1"
+            min="0"
+            step="0.01"
+            type="range"
+          />
+        )}
       </div>
     </div>
   );
